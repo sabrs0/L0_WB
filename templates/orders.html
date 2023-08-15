@@ -1,0 +1,56 @@
+<html>
+<body>
+    <h1>Order</h1>
+    {{range .Orders}}
+        <b>{{.OrderUID}}</b>
+        <b>{{.TrackNumber}}</b>
+        <b>{{.Entry}}</b>
+        <b>{{.Locale}}</b>
+        <b>{{.InternalSignature}}</b>
+        <b>{{.CustomerID}}</b>
+        <b>{{.DeliveryService}}</b>
+        <b>{{.ShardKey}}</b>
+        <b>{{.SmID}}</b>
+        <b>{{.DateCreated}}</b>
+        <b>{{.OofShard}}</b>
+        <br />
+        <h2>Delivery</h2>
+        
+            <b>{{.Delivery.Name}}</b>
+            <b>{{.Delivery.Phone}}</b>
+            <b>{{.Delivery.Zip}}</b>
+            <b>{{.Delivery.City}}</b>
+            <b>{{.Delivery.Address}}</b>
+            <b>{{.Delivery.Region}}</b>
+            <b>{{.Delivery.Email}}</b>
+            <br />
+        <h3>Payment</h3>
+            <b>{{.Payment.Transaction}}</b>
+            <b>{{.Payment.RequestID}}</b>
+            <b>{{.Payment.Currency}}</b>
+            <b>{{.Payment.Provider}}</b>
+            <b>{{.Payment.Amount}}</b>
+            <b>{{.Payment.PaymentDt}}</b>
+            <b>{{.Payment.Bank}}</b>
+            <b>{{.Payment.DeliveryCost}}</b>
+            <b>{{.Payment.GoodsTotal}}</b>
+            <b>{{.Payment.CustomFee}}</b>
+            <br />
+        <h4>Items</h4>
+        {{range .Items}}
+            <b>{{.ChrtID}}</b>
+            <b>{{.TrackNumber}}</b>
+            <b>{{.Price}}</b>
+            <b>{{.Rid}}</b>
+            <b>{{.Name}}</b>
+            <b>{{.Sale}}</b>
+            <b>{{.Size}}</b>
+            <b>{{.TotalPrice}}</b>
+            <b>{{.NmID}}</b>
+            <b>{{.Brand}}</b>
+            <b>{{.Status}}</b>
+            <br />
+        {{end}}
+    {{end}}
+</body>
+</html>

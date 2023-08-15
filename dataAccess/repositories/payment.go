@@ -20,7 +20,7 @@ func NewPaymentsRepository(db *sql.DB) PaymentsRepository {
 
 func (OR *PaymentsRepository) Insert(pmnt ents.Payment, orderID string) error {
 	_, err := OR.db.Exec(pgs.InsertPayment, orderID, pmnt.Transaction,
-		pmnt.RequestID, pmnt.Currency, pmnt.Provider, pmnt.Bank, pmnt.DeliveryCost,
+		pmnt.RequestID, pmnt.Currency, pmnt.Provider, pmnt.Amount, pmnt.PaymentDt, pmnt.Bank, pmnt.DeliveryCost,
 		pmnt.GoodsTotal, pmnt.CustomFee)
 	if err != nil {
 		return fmt.Errorf("Cant insert Payments : %s", err.Error())

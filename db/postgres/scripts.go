@@ -15,9 +15,9 @@ const (
 `
 	InsertPayment = `
 	INSERT INTO payment (order_uid, transaction, request_id, currency,
-						provider, bank, delivery_cost,
+						provider, amount, payment_dt, bank, delivery_cost,
 						goods_total, custom_fee)
-	VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9)
+	VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
 `
 	InsertItem = `
 	INSERT INTO item (order_uid, chrt_id, track_number, price,

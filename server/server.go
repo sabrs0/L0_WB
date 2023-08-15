@@ -3,6 +3,7 @@ package server
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"net/http"
 
 	mux "github.com/gorilla/mux"
@@ -14,17 +15,22 @@ type OrderHandler struct {
 }
 
 func (h OrderHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("../../templates/orders.html"))
+
 	id := r.URL.Query().Get("id")
 	if id != "" {
 		fmt.Println("id is ", id)
 	}
-	ords := (*h.ordersCache)[id]
-	data, err := json.Marshal(ords)
+	ords := []ents.Orders{(*h.ordersCache)[id]}
+	_, err := json.Marshal(ords)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 	} else {
-		fmt.Println("http data is", data)
-		w.Write(data)
+		/*fmt.Println("http data is", data)
+		w.Write(data)*/
+		tmpl.Execute(w, struct {
+			Orders []ents.Orders
+		}{ords})
 	}
 
 }

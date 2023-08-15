@@ -60,10 +60,13 @@ func (s *Subscriber) Subscribe(streamName string) error {
 
 	consumerName := "handler-1"
 	js.DeleteConsumer(streamName, consumerName)
-	js.AddConsumer(streamName, &nats.ConsumerConfig{
+	_, err = js.AddConsumer(streamName, &nats.ConsumerConfig{
 		Durable:   consumerName,
 		AckPolicy: nats.AckExplicitPolicy,
 	})
+	if err != nil {
+		return fmt.Errorf("Cant add consumer: %s", err.Error())
+	}
 
 	sub, err := js.PullSubscribe("", consumerName, nats.BindStream(streamName))
 	if err != nil {
@@ -72,7 +75,10 @@ func (s *Subscriber) Subscribe(streamName string) error {
 	s.Subscription = sub
 	defer s.Subscription.Unsubscribe()
 	for {
-
+		/*_, err := s.Subscription.ConsumerInfo()
+		if err != nil {
+			panic("Consumer error : " + err.Error())
+		}*/
 		msgs, err := s.Subscription.Fetch(1, nats.MaxWait(time.Second*6))
 		if err != nil {
 			if err == nats.ErrTimeout {
@@ -166,11 +172,12 @@ func RecoverCache() (ents.OrdersCache, error) {
 	deliveryRepo := repos.NewDeliverysRepository(db)
 	paymentRepo := repos.NewPaymentsRepository(db)
 	itemRepo := repos.NewItemsRepository(db)
-
+	fmt.Println(db)
 	orders, err := orderRepo.Select()
 	if err != nil {
 		return nil, fmt.Errorf("Cant recover cache : %s", err.Error())
 	}
+	fmt.Println("Len of orders is ", len(orders))
 	for _, ord := range orders {
 		//не будет ли тут проблем с ord...
 		delivery, err := deliveryRepo.SelectByOrderId(ord.OrderUID)

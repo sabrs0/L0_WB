@@ -7,12 +7,12 @@ import (
 )
 
 var (
-	port     = "5432"
+	host     = "localhost"
 	user     = "postgres"
 	password = "12345"
-	sslMode  = "disable"
 	dbName   = "wb"
-	host     = "localhost"
+	port     = "5433"
+	sslMode  = "disable"
 )
 
 func NewDB() (*sql.DB, error) {
