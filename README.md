@@ -26,3 +26,13 @@ go run cmd/subscriber/main.go
 ./wrk -t12 -c400 -d30s http://localhost:8080/orders/?id=b563feb7b2b84b6test
 ```
 Результат:
+```
+Running 30s test @ http://localhost:8080/orders?id=b563feb7b2b84b6test
+  12 threads and 400 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   166.53ms  191.17ms   1.52s    84.30%
+    Req/Sec   298.64    148.27     1.30k    74.04%
+  106969 requests in 30.10s, 245.65MB read
+Requests/sec:   3554.16
+Transfer/sec:      8.16MB
+```
