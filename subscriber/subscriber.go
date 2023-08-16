@@ -95,6 +95,7 @@ func (s *Subscriber) Subscribe(streamName string) error {
 			panic("Cant insert order: " + err.Error())
 		}
 		//fmt.Println(ords)
+		fmt.Println("MSG RECIEVED")
 		msgs[0].Ack()
 	}
 
