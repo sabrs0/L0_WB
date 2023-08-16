@@ -2,53 +2,53 @@
 <body>
     <h1>Order</h1>
     {{range .Orders}}
-        <b>{{.OrderUID}}</b>
-        <b>{{.TrackNumber}}</b>
-        <b>{{.Entry}}</b>
-        <b>{{.Locale}}</b>
-        <b>{{.InternalSignature}}</b>
-        <b>{{.CustomerID}}</b>
-        <b>{{.DeliveryService}}</b>
-        <b>{{.ShardKey}}</b>
-        <b>{{.SmID}}</b>
-        <b>{{.DateCreated}}</b>
-        <b>{{.OofShard}}</b>
+        <li><b>Order UID:</b> <b>{{.OrderUID}}</b></li>   
+        <li><b>Track Number:</b> <b>{{.TrackNumber}}</b></li>  
+        <li><b>Entry:</b> <b>{{.Entry}}</b></li>
+        <li><b>Locale:</b> <b>{{.Locale}}</b></li>
+        <li><b>Internal Signature:</b> <b>{{.InternalSignature}}</b></li>
+        <li><b>Customer ID:</b> <b>{{.CustomerID}}</b></li>
+        <li><b>Delivery Service:</b> <b>{{.DeliveryService}}</b></li>
+        <li><b>Shard Key:</b> <b>{{.ShardKey}}</b></li>
+        <li><b>Sm ID:</b> <b>{{.SmID}}</b></li>
+        <li><b>Date Created:</b> <b>{{.DateCreated}}</b></li>
+        <li><b>Oof Shard:</b> <b>{{.OofShard}}</b></li>
         <br />
-        <h2>Delivery</h2>
+        <h1>Delivery</h1>
         
-            <b>{{.Delivery.Name}}</b>
-            <b>{{.Delivery.Phone}}</b>
-            <b>{{.Delivery.Zip}}</b>
-            <b>{{.Delivery.City}}</b>
-            <b>{{.Delivery.Address}}</b>
-            <b>{{.Delivery.Region}}</b>
-            <b>{{.Delivery.Email}}</b>
+            <li><b>Name:</b> <b>{{.Delivery.Name}}</b></li>
+            <li><b>Phone:</b> <b>{{.Delivery.Phone}}</b></li>
+            <li><b>Zip:</b> <b>{{.Delivery.Zip}}</b></li>
+            <li><b>City:</b> <b>{{.Delivery.City}}</b></li>
+            <li><b>Address:</b> <b>{{.Delivery.Address}}</b></li>
+            <li><b>Region:</b> <b>{{.Delivery.Region}}</b></li>
+            <li><b>Email:</b> <b>{{.Delivery.Email}}</b></li>
             <br />
-        <h3>Payment</h3>
-            <b>{{.Payment.Transaction}}</b>
-            <b>{{.Payment.RequestID}}</b>
-            <b>{{.Payment.Currency}}</b>
-            <b>{{.Payment.Provider}}</b>
-            <b>{{.Payment.Amount}}</b>
-            <b>{{.Payment.PaymentDt}}</b>
-            <b>{{.Payment.Bank}}</b>
-            <b>{{.Payment.DeliveryCost}}</b>
-            <b>{{.Payment.GoodsTotal}}</b>
-            <b>{{.Payment.CustomFee}}</b>
+        <h1>Payment</h1>
+            <li><b>Transaction:</b> <b>{{.Payment.Transaction}}</b></li>
+            <li><b>Request ID:</b> <b>{{.Payment.RequestID}}</b></li>
+            <li><b>Currency:</b> <b>{{.Payment.Currency}}</b></li>
+            <li><b>Provider:</b> <b>{{.Payment.Provider}}</b></li>
+            <li><b>Amount:</b> <b>{{.Payment.Amount}}</b></li>
+            <li><b>Payment Dt:</b> <b>{{.Payment.PaymentDt}}</b></li>
+            <li><b>Bank:</b> <b>{{.Payment.Bank}}</b></li>
+            <li><b>Delivery Cost:</b> <b>{{.Payment.DeliveryCost}}</b></li>
+            <li><b>Goods Total:</b> <b>{{.Payment.GoodsTotal}}</b></li>
+            <li><b>Custom Fee:</b> <b>{{.Payment.CustomFee}}</b></li>
             <br />
-        <h4>Items</h4>
+        <h1>Items</h1>
         {{range .Items}}
-            <b>{{.ChrtID}}</b>
-            <b>{{.TrackNumber}}</b>
-            <b>{{.Price}}</b>
-            <b>{{.Rid}}</b>
-            <b>{{.Name}}</b>
-            <b>{{.Sale}}</b>
-            <b>{{.Size}}</b>
-            <b>{{.TotalPrice}}</b>
-            <b>{{.NmID}}</b>
-            <b>{{.Brand}}</b>
-            <b>{{.Status}}</b>
+            <li><b>Chrt ID:</b> <b>{{.ChrtID}}</b></li>
+            <li><b>Track Number:</b> <b>{{.TrackNumber}}</b></li>
+            <li><b>Price:</b> <b>{{.Price}}</b></li>
+            <li><b>Rid:</b> <b>{{.Rid}}</b></li>
+            <li><b>Name:</b> <b>{{.Name}}</b></li>
+            <li><b>Sale:</b> <b>{{.Sale}}</b></li>
+            <li><b>Size:</b> <b>{{.Size}}</b></li>
+            <li><b>Total Price:</b> <b>{{.TotalPrice}}</b></li>
+            <li><b>Nm ID:</b> <b>{{.NmID}}</b></li>
+            <li><b>Brand:</b> <b>{{.Brand}}</b></li>
+            <li><b>Status:</b> <b>{{.Status}}</b></li>
             <br />
         {{end}}
     {{end}}

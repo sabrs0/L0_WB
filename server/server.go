@@ -24,10 +24,9 @@ func (h OrderHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ords := []ents.Orders{(*h.ordersCache)[id]}
 	_, err := json.Marshal(ords)
 	if err != nil {
-		http.Error(w, err.Error(), 500)
+		http.Error(w, err.Error(), 404)
 	} else {
-		/*fmt.Println("http data is", data)
-		w.Write(data)*/
+
 		tmpl.Execute(w, struct {
 			Orders []ents.Orders
 		}{ords})
@@ -39,7 +38,7 @@ func StartServer(addr string, cache *ents.OrdersCache) {
 
 	router := mux.NewRouter()
 
-	router.Handle("/orders/", OrderHandler{ordersCache: cache})
+	router.Handle("/orders", OrderHandler{ordersCache: cache})
 
 	server := http.Server{
 		Addr: addr,

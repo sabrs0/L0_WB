@@ -75,6 +75,7 @@ func (s *Subscriber) Subscribe(streamName string) error {
 	s.Subscription = sub
 	defer s.Subscription.Unsubscribe()
 	for {
+		// разкомментировать если потребуется ронять сервис при удалении канала
 		/*_, err := s.Subscription.ConsumerInfo()
 		if err != nil {
 			panic("Consumer error : " + err.Error())
@@ -93,33 +94,12 @@ func (s *Subscriber) Subscribe(streamName string) error {
 		if err != nil {
 			panic("Cant insert order: " + err.Error())
 		}
-		fmt.Println(ords)
+		//fmt.Println(ords)
 		msgs[0].Ack()
 	}
 
 }
 
-/*
-	func (s *Subscriber) RecMsgs() {
-		defer s.Subscription.Unsubscribe()
-		//fmt.Println(s.Subscription)
-		for {
-
-			msgs, err := s.Subscription.Fetch(1, nats.MaxWait(time.Second*6))
-			if err != nil {
-
-				panic("Cant fetch msg: " + err.Error())
-			}
-			ords := &ents.Orders{}
-			json.Unmarshal(msgs[0].Data, ords)
-			err = s.InsertOrder(*ords)
-			if err != nil {
-				panic("Cant insert order: " + err.Error())
-			}
-			msgs[0].Ack()
-		}
-	}
-*/
 func (s *Subscriber) InsertOrder(ord ents.Orders) error {
 	//
 	if _, isOK := (*s.cache)[ord.OrderUID]; !isOK {
@@ -172,14 +152,13 @@ func RecoverCache() (ents.OrdersCache, error) {
 	deliveryRepo := repos.NewDeliverysRepository(db)
 	paymentRepo := repos.NewPaymentsRepository(db)
 	itemRepo := repos.NewItemsRepository(db)
-	fmt.Println(db)
+	//fmt.Println(db)
 	orders, err := orderRepo.Select()
 	if err != nil {
 		return nil, fmt.Errorf("Cant recover cache : %s", err.Error())
 	}
-	fmt.Println("Len of orders is ", len(orders))
+	//fmt.Println("Len of orders is ", len(orders))
 	for _, ord := range orders {
-		//не будет ли тут проблем с ord...
 		delivery, err := deliveryRepo.SelectByOrderId(ord.OrderUID)
 		if err != nil {
 			return nil, fmt.Errorf("Cant recover cache : %s", err.Error())

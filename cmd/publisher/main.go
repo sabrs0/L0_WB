@@ -85,18 +85,14 @@ func main() {
 	fmt.Println("FILESIZE IS ", fileSize)
 	buf := make([]byte, fileSize)
 	_, err = file.Read(buf)
-	fmt.Println("BYTES READ ", string(buf))
 	if err != nil {
 		panic("Cant read from file : " + err.Error())
 	}
-	fmt.Println("SUCCESSFULLY READ")
 
-	//data, err := json.Marshal(buf)
 	if err != nil {
 		panic("Cant Marshal file : " + err.Error())
 	}
 	defer js.DeleteStream(cmd.StreamName)
-	fmt.Println("SUCCESSFULLY MARSHALLED")
 	for i := 0; i < 3; i++ {
 		time.Sleep(time.Second * 5)
 		fmt.Println("PUBLISHING")
